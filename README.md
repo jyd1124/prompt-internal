@@ -24,8 +24,9 @@
 # 技术
 
 - Vue3 + Nuxt3
-- 所有组件都使用 Shadcn vue UI 内提供的组件
-- CSS 使用 Tailwind
+- UI组件库：完全使用 [shadcn-vue](https://www.shadcn-vue.com/) 组件
+- CSS：Tailwind CSS v4
+- 图标：Lucide Vue Next
 
 ## 运行项目
 
@@ -44,10 +45,23 @@ pnpm dev
 ## 功能特性
 
 ✅ 提示词分页展示（响应式布局，支持1-5列）
-✅ 场景和角色筛选功能
-✅ 提示词卡片展示（标题、内容、标签）
-✅ 编辑提示词功能（点击卡片右上角编辑图标）
-✅ 悬浮上传按钮
-✅ 提示词上传表单
-✅ 分页导航
+✅ 场景和角色筛选功能（使用 shadcn Select 组件）
+✅ 提示词卡片展示（使用 shadcn Card 组件，包含标题、内容、标签）
+✅ 编辑提示词功能（使用 shadcn Dialog 组件）
+✅ 悬浮上传按钮（使用 shadcn Button 组件）
+✅ 提示词上传表单（使用 shadcn Form 组件）
+✅ 分页导航（使用 shadcn Button 组件）
 ✅ 响应式设计，支持移动端
+✅ 完整的 shadcn-vue 组件生态系统
+✅ 现代化设计系统和主题支持
+
+### 使用的 shadcn-vue 组件
+
+- Button：按钮交互
+- Card：卡片布局
+- Dialog：模态弹窗
+- Input：文本输入
+- Textarea：多行文本
+- Select：下拉选择
+- Label：表单标签
+- Badge：标签展示
