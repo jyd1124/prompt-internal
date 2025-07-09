@@ -12,7 +12,7 @@
         <div class="flex flex-col md:flex-row gap-4 items-end">
           <div class="flex-1">
             <Label for="scenario" class="text-sm font-medium mb-2">场景</Label>
-                         <Select v-model="filters.scenario">
+              <Select v-model="filters.scenario">
                <SelectTrigger>
                  <SelectValue placeholder="全部场景" />
                </SelectTrigger>
@@ -28,7 +28,7 @@
           
           <div class="flex-1">
             <Label for="role" class="text-sm font-medium mb-2">角色</Label>
-                         <Select v-model="filters.role">
+              <Select v-model="filters.role">
                <SelectTrigger>
                  <SelectValue placeholder="全部角色" />
                </SelectTrigger>
@@ -224,7 +224,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { Edit, Plus } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -246,10 +246,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
-import type { Prompt, FilterOptions } from '~/types'
 
 // 响应式数据
-const filters = ref<FilterOptions>({
+const filters = ref({
   scenario: 'all',
   role: 'all'
 })
@@ -260,7 +259,7 @@ const showEditDialog = ref(false)
 const showUploadDialog = ref(false)
 
 // 模拟数据
-const allPrompts = ref<Prompt[]>([
+const allPrompts = ref([
   {
     id: 1,
     title: "专业的写作助手",
@@ -280,7 +279,7 @@ const allPrompts = ref<Prompt[]>([
   {
     id: 3,
     title: "数据分析师",
-    content: "你是一名专业的数据分析师，擅长使用统计学方法分析数据，发现数据中的模式和趋势，并提供有价值的洞察。",
+    content: "你是一名专业的数据分析师，擅长使用统计学方法分析数据，发现数据中的模式和趋势，并提供有价值的洞察。你是一名专业的数据分析师，擅长使用统计学方法分析数据，发现数据中的模式和趋势，并提供有价值的洞察。你是一名专业的数据分析师，擅长使用统计学方法分析数据，发现数据中的模式和趋势，并提供有价值的洞察。你是一名专业的数据分析师，擅长使用统计学方法分析数据，发现数据中的模式和趋势，并提供有价值的洞察。",
     tags: ["数据分析", "统计", "洞察"],
     scenario: "analysis",
     role: "analyst"
@@ -296,8 +295,8 @@ const allPrompts = ref<Prompt[]>([
   }))
 ])
 
-const filteredPrompts = ref<Prompt[]>([])
-const editingPrompt = ref<Prompt>({} as Prompt)
+const filteredPrompts = ref([])
+const editingPrompt = ref({})
 const editingTagsString = ref('')
 
 const newPrompt = ref({
@@ -339,7 +338,7 @@ const prevPage = () => {
   }
 }
 
-const editPrompt = (prompt: Prompt) => {
+const editPrompt = (prompt) => {
   editingPrompt.value = { ...prompt }
   editingTagsString.value = prompt.tags.join(', ')
   showEditDialog.value = true
@@ -347,14 +346,14 @@ const editPrompt = (prompt: Prompt) => {
 
 const closeEditDialog = () => {
   showEditDialog.value = false
-  editingPrompt.value = {} as Prompt
+  editingPrompt.value = {}
   editingTagsString.value = ''
 }
 
 // 监听编辑弹窗状态变化
 watch(showEditDialog, (newValue) => {
   if (!newValue) {
-    editingPrompt.value = {} as Prompt
+    editingPrompt.value = {}
     editingTagsString.value = ''
   }
 })
@@ -404,7 +403,7 @@ const saveUpload = () => {
     .map(tag => tag.trim())
     .filter(tag => tag.length > 0)
   
-  const prompt: Prompt = {
+  const prompt = {
     id: Date.now(), // 简单的ID生成
     title: newPrompt.value.title,
     content: newPrompt.value.content,
